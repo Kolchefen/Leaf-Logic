@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadata for the webpage -->
+    <meta charset="UTF-8"> <!-- Specifies character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper rendering on mobile devices -->
+    <title>User Home Page</title> <!-- Title of the webpage shown in the browser tab -->
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <!-- Link to the external CSS file for styling the page -->
+    <link rel="stylesheet" href="./styles/userHomePage.css">
+</head>
+<body>
+    <!-- Page Header Section -->
+    <header>
+        <!-- Welcome message -->
+        <h1>Welcome, <span ></span></h1>
+
+        <!-- Navigation bar -->
+        <nav>
+            <ul>
+                <!-- Link to the Settings section -->
+                <li><a href="#settings">Settings</a></li>
+                <!-- Logout link with an ID for potential JavaScript handling -->
+                <li><a id="logout" href="#logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Profile Section -->
+        <section id="profile">
+            <h2>Your Profile</h2>
+            <p>Here you can view and edit your profile information.</p>
+
+            <!-- Weather display area -->
+            <div id="weather">
+                <h3>Current Weather</h3>
+                <!-- Placeholder for dynamic weather data -->
+                <p id="weather-info">Loading weather data...</p>
+            </div>
+        </section>
+
+        <!-- Include weather-specific JavaScript to fetch and display weather data -->
+        <script src="weather.js"></script>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <p>Access your recent activities and notifications here.</p>
+
+            <!-- Links to other features -->
+            <div class="dashboard-links">
+                <!-- Link to the AI Chat Bot page -->
+                <a href="chatbot_draft.html" class="dashboard-item">AI Chat Bot</a>
+            </div>
+
+            <div class="dashboard-links">
+                <!-- Link to the AI Chat Bot page -->
+                <a href="myPlants.html" class="dashboard-item">Plant Log</a>
+            </div>
+            
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <!-- Footer copyright information -->
+        <p>&copy; 2024 Leaf Logic. All rights reserved.</p>
+    </footer>
+
+    <!-- Include general JavaScript for page interactions -->
+    <script src="./scripts/userHomePage.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Leaf Logic - Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/registerStyle.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+
+  <body>
+    <!-- Simplified Nav Bar for Register Page (removed Login button) -->
+    <div class="navbar">
+      <a href="landingpage.html">Home</a>
+    </div>
+
+    <!-- Form Section -->
+    <div class="container">
+        <form class="form-container" id="reg-signup-form" >
+            <h2>Register</h2>
+
+            <!-- Email Error display message -->
+            <p id="email-error" class="error-message"></p>
+
+            <!-- Email Input -->
+            <input type="text" id="reg-email" name="Email" placeholder="Email" required>
+
+            <!-- Password Input -->
+            <input type="password" id="reg-password" name="password" placeholder="Password" required>
+
+            <!-- Confirm Password -->
+            <input type="password" id="reg-confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+
+            <!-- Password Error display message -->
+            <p id="password-error" class="error-message"></p>
+
+            <!-- Submit Button -->
+            <button type="submit">Register</button>
+
+            <!-- Back to Login Button -->
+            <button type="button" onclick="window.location.href='login.html'">Back to Login</button>
+        </form>
+    </div>
+
+</body>
+
+
+<!--Load Scripts After Content-->
+
+<!--Firebase Scripts https://firebase.google.com/docs/web/setup#available-libraries-->
+<!--Initializes firebase authentification Using 8.10.0 for namespaced compatability-->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+<script src="auth.js"></script>
+<script src="register.js"></script>
+
+</html>

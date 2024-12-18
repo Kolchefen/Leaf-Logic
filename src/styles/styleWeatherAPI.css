@@ -1,0 +1,147 @@
+/* General body styles */
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Poppins', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(120deg, #3b953e, #55e05c); /* Brighter greens */
+  color: #f0fff0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: background 0.5s ease;
+}
+
+/* Container for content */
+.container {
+  background: rgba(71, 182, 99, 0.651); /* Slightly brighter */
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  backdrop-filter: blur(12px); /* Increased blur for a softer look */
+  border: 1px solid rgba(255, 255, 255, 0.4); /* Brighter border */
+  width: 90%;
+  max-width: 800px;
+  animation: fadeIn 2s ease;
+}
+
+.form-container {
+  margin-left: auto;
+  margin-right: auto; /*Aligns login form to center*/
+  flex-direction: column;
+  justify-content: center;  /* Center horizontally */
+  text-align: center;
+  align-items: center;      /* Center vertically */
+  max-height: 300px;            /* Full viewport height */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-width: 250px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  backdrop-filter: blur(12px); /* Increased blur for a softer look */
+  background-color: rgba(252, 252, 252, 0.17);
+  border: 1px #fff;
+}
+
+/* Style the form itself */
+form {
+  display: flex;
+  gap: 10px;               /* Adds space between form elements */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+input {
+  border: none;
+  outline: none;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 70%;
+  font-size: 12pt;
+  border-radius: 5000px;
+  padding: 10px 20px 10px 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+  backdrop-filter: blur(12px); /* Increased blur for a softer look */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  opacity: .5;              /* Initial opacity */
+  transition: opacity 0.5s ease; /* Smooth transition effect */
+}
+
+    
+input:hover {
+  opacity: 1;
+}
+
+input:focus,
+input:not(:placeholder-shown) {
+  opacity: 1;
+}
+
+/* Fancy heading */
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: #c6eeca; /* Solid color for the text */
+  transition: all 0.3s ease;
+}
+
+h1:hover {
+  letter-spacing: 5px;
+  transform: scale(1.05);
+}
+
+/* Paragraph styling */
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #d8f0d8; /* Brighter paragraph text */
+  margin-bottom: 20px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* More noticeable shadow */
+  transition: color 0.3s ease;
+}
+
+p:hover {
+  color: #e6ffe6; /* Lighter green on hover */
+}
+
+/* Button styling */
+button {
+  border: none;
+  width: fit-content;
+  justify-content: center;
+  background-color: #378d3d; /* Brighter green */
+  padding: 10px 15px;
+  margin: 5px 5px 5px 5px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* Fancy button shadow */
+}
+
+button:hover {
+  background-color: #1c6d1f; /* Darker green on hover */
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Link styling */
+a {
+  color: #b2ffb2; /* Brighter link color */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #e6ffe6; /* Brighter green on hover */
+}
+

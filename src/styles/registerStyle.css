@@ -1,0 +1,81 @@
+/* Button styling */
+button {
+  border: none;
+  width: 200px; /* Set a fixed width to match the Home button */
+  justify-content: center;
+  background-color: #378d3d; /* Brighter green */
+  padding: 15px 25px; /* Increased padding for the Login button */
+  margin: 10px auto; /* Center button horizontally */
+  border-radius: 30px;
+  font-size: 1.1rem;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* Fancy button shadow */
+}
+
+button:hover {
+  background-color: #3e9b43; /* Darker green on hover */
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Specific container for buttons in the form */
+.button-container {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 1px; /* Space between buttons */
+  align-items: center; /* Center buttons horizontally */
+}
+
+/* Error message styling */
+#password-error, #email-error {
+  margin: 0 auto;
+  height: 40px; /* Adjust height as necessary */
+  font-size: 10pt;
+  color: red;
+  max-width: 300px;
+  visibility: hidden; /* Start hidden, but space is reserved */
+}
+
+#password-error.visible, #email-error.visible {
+  visibility: visible;
+}
+
+/* Form container styling */
+.form-container {
+  margin-left: auto;
+  margin-right: auto; /* Aligns form to center */
+  flex-direction: column;
+  justify-content: center;  /* Center horizontally */
+  text-align: center;
+  align-items: center;      /* Center vertically */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  min-height: 400px;            /* Full viewport height */
+  min-width: 295px;
+  max-width: 425px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  backdrop-filter: blur(12px); /* Increased blur for a softer look */
+  background-color: #52b659;
+  border: 1px solid #fff; /* Ensure visible border */
+  transition: background-color 0.3s ease;
+}
+
+/* Input fields */
+input {
+  margin-bottom: 35px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Style the form itself */
+form {
+  display: flex;
+  flex-direction: column; /* Make elements stack vertically */
+  gap: 10px;         /* Adds space between form elements */
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #27742c;
+}

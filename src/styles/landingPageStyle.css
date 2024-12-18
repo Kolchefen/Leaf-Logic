@@ -1,0 +1,164 @@
+/* General body styles */
+html {
+  height: 100%;
+}
+
+/* Nav Bar Styles */
+.navbar {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #55e05c;
+  z-index: 100;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: #555;
+}
+
+.navbar .profile-icon {
+  width: 35px;
+  height: 35px;
+  margin-right: 2vw;
+  border-radius: 50%;
+  background-color: #bbb;
+  display: inline-block;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+/* Body styles */
+body {
+  font-family: 'Poppins', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(120deg, #3b953e, #55e05c);
+  color: #f0fff0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: background 0.5s ease;
+}
+
+/* Container for content */
+.container {
+  background: rgba(71, 182, 99, 0.651);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px 20px 20px 20px;
+}
+
+/* Fancy heading */
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: #c6eeca;
+  transition: all 0.3s ease;
+}
+
+h1:hover {
+  letter-spacing: 5px;
+  transform: scale(1.05);
+}
+
+/* Paragraph styling */
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #d8f0d8;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  transition: color 0.3s ease;
+}
+
+p:hover {
+  color: #e6ffe6;
+}
+
+/* Button styling */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+button {
+  border: none;
+  width: fit-content;
+  justify-content: center;
+  background-color: #378d3d;
+  padding: 10px 15px;
+  margin: 5px auto;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #3e9b43;
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+/* Footer Styling */
+footer {
+  margin-top: 20px;
+  text-align: center;
+  color: #d8f0d8;
+  background-color: #378d3d;
+  padding: 10px;
+  width: 100%;
+  box-shadow: 0px -8px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+/* .weather-input {
+  margin-bottom: 20px;
+}
+
+.weather-input input, .weather-input button {
+  margin: 5px;
+  padding: 10px;
+}
+
+.weather-day {
+  margin: 10px;
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 5px;
+}
+
+#weather-box {
+  display: flex;
+  flex-direction: column;
+} */

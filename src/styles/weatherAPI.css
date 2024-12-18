@@ -1,0 +1,148 @@
+/* Global Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  color: #333;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* Hero Section Styles */
+
+.hero-section {
+  background: linear-gradient(to right, #00aaff, #0047b3);
+  color: #fff;
+  padding: 120px 20px;
+  text-align: center;
+  border-bottom: 4px solid #0056b3;
+}
+
+.hero-section h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
+
+.hero-section p {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+}
+
+.cta-btn {
+  background-color: #fff;
+  color: #007bff;
+  border: 2px solid #007bff;
+  padding: 12px 24px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.cta-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Features Section Styles */
+
+.features-section {
+  padding: 60px 20px;
+  background-color: #fff;
+  border-bottom: 2px solid #ddd;
+}
+
+.feature-item {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.feature-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feature-item h3 {
+  margin-top: 0;
+  color: #007bff;
+}
+
+/* Call to Action Section Styles */
+
+.cta-section {
+  background-color: #007bff;
+  padding: 60px 20px;
+  text-align: center;
+  color: #fff;
+  border-top: 4px solid #0056b3;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.cta-section .cta-btn {
+  background-color: #fff;
+  color: #007bff;
+  border: 2px solid #fff;
+  padding: 12px 24px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.cta-section .cta-btn:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+/* Footer Styles */
+
+footer {
+  background-color: #f4f4f4;
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  border-top: 2px solid #ddd;
+}
+
+footer p {
+  margin-bottom: 0;
+}

@@ -1,0 +1,193 @@
+/* General Reset */
+/* Reset default margin, padding, and box-sizing for common elements */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+/* Apply global styles to the body */
+body {
+    font-family: 'Poppins', Roboto, sans-serif; /* Set font family for consistent typography */
+    line-height: 1.6; /* Set default line height for readability */
+    color: #f0fff0; /* Light font color for contrast */
+    background: linear-gradient(120deg, #3b953e, #55e05c); /* Apply a bright green gradient background */
+    min-height: 100vh; /* Ensure the body fills the full height of the viewport */
+    display: flex; /* Use flexbox for layout management */
+    flex-direction: column; /* Arrange elements in a column */
+    align-items: center; /* Center-align all content horizontally */
+}
+
+/* Header Styling */
+/* Style for the header section */
+header {
+    background-color: #50af53; /* Dark green header background (matches footer) */
+    color: white; /* White text for high contrast */
+    padding: 20px 0; /* Add vertical padding */
+    width: 100%; /* Full-width header */
+    text-align: center; /* Center-align text */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Add subtle shadow for depth */
+}
+
+header h1 {
+    margin-bottom: 10px; /* Add space below the title */
+    color: #c6eeca; /* Slightly muted green for the title text */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Add text shadow for emphasis */
+    font-size: 2rem; /* Set font size for the main title */
+}
+
+header nav ul {
+    list-style: none; /* Remove bullet points from navigation list */
+    display: flex; /* Use flexbox to arrange items horizontally */
+    justify-content: center; /* Center the navigation items */
+    gap: 15px; /* Add spacing between navigation links */
+    padding: 0; /* Remove default padding */
+}
+
+header nav a {
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* Set link color to white */
+    padding: 8px 15px; /* Add padding for clickable area */
+    border-radius: 30px; /* Round the corners for buttons */
+    background-color: #378d3d; /* Dark green background for buttons */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+header nav a:hover {
+    background-color: #3e9b43; /* Change background on hover */
+    transform: translateY(-3px); /* Add lift effect on hover */
+}
+
+/* Main Content Styling */
+/* Style for the main content area */
+main {
+    margin-top: 20px; /* Add space below the header */
+    max-width: 1000px; /* Set maximum width for content */
+    width: 90%; /* Set content width relative to viewport */
+    text-align: center; /* Center-align all text */
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow content to wrap to the next line */
+    gap: 20px; /* Add spacing between sections */
+    justify-content: center; /* Center-align all sections */
+}
+
+/* Section Styling */
+/* Style for individual sections */
+section {
+    background: rgba(71, 182, 99, 0.651); /* Semi-transparent green background */
+    padding: 20px; /* Add padding for inner content */
+    border-radius: 15px; /* Round section corners */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    color: #d8f0d8; /* Light green text */
+    width: 100%; /* Full-width section */
+    max-width: 450px; /* Limit maximum width */
+}
+
+h2 {
+    font-size: 1.5rem; /* Font size for section titles */
+    color: #b2ffb2; /* Bright green text for section titles */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Add shadow for emphasis */
+    margin-bottom: 10px; /* Add spacing below the title */
+}
+
+p {
+    font-size: 1.2rem; /* Set paragraph font size */
+    line-height: 1.6; /* Adjust line height for readability */
+    color: #d8f0d8; /* Light green text color */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Add shadow for emphasis */
+}
+
+/* Weather Section Styling */
+/* Style for the weather display box */
+#weather {
+    margin-top: 20px; /* Add spacing above the weather section */
+    padding: 15px; /* Add padding for inner content */
+    background-color: rgba(54, 139, 75, 0.651); /* Semi-transparent green background */
+    border-radius: 10px; /* Round the box corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    color: #d8f0d8; /* Light green text */
+    font-size: 1rem; /* Set default font size */
+    text-align: left; /* Align text to the left */
+}
+
+#weather h3 {
+    font-size: 1.2rem; /* Font size for the weather title */
+    color: #b2ffb2; /* Bright green for the title */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Add shadow for emphasis */
+    margin-bottom: 10px; /* Add spacing below the title */
+}
+
+#weather-info {
+    font-size: 1rem; /* Font size for the weather details */
+    line-height: 1.5; /* Adjust line height for readability */
+}
+
+/* Dashboard Links Styling */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style for dashboard navigation links */
+.dashboard-links {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 15px; /* Add spacing between buttons */
+    margin-top: 20px; /* Add spacing above the dashboard */
+}
+
+.dashboard-item {
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Make links behave like buttons */
+    background-color: #378d3d; /* Button background color */
+    color: #fff; /* White text for contrast */
+    padding: 12px 20px; /* Add padding for button size */
+    border-radius: 25px; /* Round button corners */
+    font-size: 1.2rem; /* Font size for button text */
+    font-weight: bold; /* Bold text for emphasis */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    text-align: center; /* Center-align text within buttons */
+    width: 200px; /* Set a fixed button width */
+    margin: 5px 0 5px 0;
+}
+
+.dashboard-item:hover {
+    background-color: #3e9b43; /* Lighter green on hover */
+    transform: translateY(-3px); /* Add lift effect on hover */
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+/* Dashboard Section */
+#dashboard {
+    padding: 20px;
+    background-color: rgba(71, 182, 99, 0.651);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+/* Plant Log Styling */
+#plant-log {
+    padding: 20px;
+    background-color: rgba(71, 182, 99, 0.651);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Footer Styling */
+/* Style for the footer */
+footer {
+    margin-top: 20px; /* Add spacing above the footer */
+    text-align: center; /* Center-align footer text */
+    color: #d8f0d8; /* Light green text color */
+    background-color: #378d3d; /* Match the header's dark green background */
+    padding: 10px; /* Add padding for content */
+    width: 100%; /* Full-width footer */
+    box-shadow: 0px -8px 15px rgba(0, 0, 0, 0.1); /* Add shadow at the top for separation */
+}
