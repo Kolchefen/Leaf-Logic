@@ -3,28 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Plants</title>
+    <title>My Plants - Leaf Logic</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./styles/myPlants.css">
 </head>
 <body>
     <header>
-        
         <h1>My Plants</h1>
     </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="userHomePage.html">My Dashboard</a>
+        <a href="myPlants.html" class="active">My Plants</a>
+        <a href="chatbot_draft.html">AI Assistant</a>
+        <a href="#" id="logout-btn">Logout</a>
+    </nav>
+
     <main>
-        <input id="plantInput" type="text" placeholder="Search or add a plant..." />
-        <div id="suggestions" class="suggestions"></div>
-        <div id="inventoryList" class="inventory-list">
-            <!-- <div style="display: ;">
-                Lavender
-                <button class="delete-btn">Delete</button>
-            </div> -->
+        <!-- Plant Search and Filter Section -->
+        <div class="search-section">
+            <input id="plant-search" type="text" placeholder="Search plants..." />
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="indoor">Indoor</button>
+                <button class="filter-btn" data-filter="outdoor">Outdoor</button>
+            </div>
         </div>
+
+        <!-- Plant List Section -->
+        <div id="plant-list" class="plant-grid">
+            <!-- Plants will be loaded here dynamically -->
+            <div class="plant-loading">Loading plants...</div>
+        </div>
+
+        <!-- Add New Plant Button -->
+        <button id="add-plant-btn" class="action-button">
+            <span class="plus-icon">+</span> Add New Plant
+        </button>
     </main>
-    <button id="addPlantBtn" class="add-plant-button">Add New Plant</button>
+
+    <!-- Add/Edit Plant Modal -->
+    <div id="plant-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Add New Plant</h2>
+            <form id="plant-form">
+                <input type="hidden" id="plant-id">
+                
+                <div class="form-group">
+                    <label for="plant-name">Plant Name</label>
+                    <input type="text" id="plant-name" placeholder="E.g., Spider Plant" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="plant-type">Plant Type</label>
+                    <input type="text" id="plant-type" placeholder="E.g., Succulent">
+                </div>
+                
+                <div class="form-group">
+                    <label for="plant-location">Location</label>
+                    <select id="plant-location" required>
+                        <option value="">-- Select Location --</option>
+                        <option value="indoor">Indoor</option>
+                        <option value="outdoor">Outdoor</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="plant-description">Description</label>
+                    <textarea id="plant-description" placeholder="Notes about your plant..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="plant-date">Planted Date</label>
+                    <input type="date" id="plant-date">
+                </div>
+                
+                <div class="form-group">
+                    <label for="plant-photo">Plant Photo</label>
+                    <input type="file" id="plant-photo" accept="image/*">
+                    <div id="photo-preview" class="photo-preview"></div>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit" id="save-plant-btn">Save Plant</button>
+                    <button type="button" id="cancel-plant-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Care Actions Modal -->
+    <div id="care-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Plant Care</h2>
+            <h3 id="care-plant-name"></h3>
+            
+            <div class="care-grid">
+                <button id="water-btn" class="care-btn">
+                    <span class="care-icon">💧</span>
+                    <span>Water Plant</span>
+                </button>
+                
+                <button id="fertilize-btn" class="care-btn">
+                    <span class="care-icon">🌱</span>
+                    <span>Fertilize</span>
+                </button>
+                
+                <button id="prune-btn" class="care-btn">
+                    <span class="care-icon">✂️</span>
+                    <span>Prune</span>
+                </button>
+                
+                <button id="notes-btn" class="care-btn">
+                    <span class="care-icon">📝</span>
+                    <span>Add Notes</span>
+                </button>
+            </div>
+            
+            <div class="care-history">
+                <h4>Care History</h4>
+                <ul id="care-history-list">
+                    <!-- Care history will be loaded here -->
+                </ul>
+            </div>
+            
+            <div class="modal-footer">
+                <button id="close-care-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content confirm-content">
+            <h2>Confirm Action</h2>
+            <p id="confirm-message"></p>
+            <div class="confirm-buttons">
+                <button id="confirm-yes-btn">Yes</button>
+                <button id="confirm-no-btn">No</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>© 2024 Leaf Logic. All rights reserved.</p>
+        <p>&copy; 2024 Leaf Logic. All rights reserved.</p>
     </footer>
-    <script src="myPlants.js"></script>
+
+    <!-- Import module script -->
+    <script type="module" src="./js/myPlants.js"></script>
 </body>
 </html>

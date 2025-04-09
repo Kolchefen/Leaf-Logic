@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaf Logic Assistant</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <style>
         /* General Reset */
         body, h1, h2, p, ul, li {
@@ -14,19 +15,19 @@
 
         /* Body Styling */
         body {
-            font-family: 'Poppins', Roboto, sans-serif; /* Set font family for consistent typography */
-            line-height: 1.6; /* Set default line height for readability */
-            color: #f0fff0; /* Light font color for contrast */
-            background: linear-gradient(120deg, #3b953e, #55e05c); /* Apply a bright green gradient background */
-            min-height: 100vh; /* Ensure the body fills the full height of the viewport */
-            display: flex; /* Use flexbox for layout management */
-            flex-direction: column; /* Arrange elements in a column */
-            align-items: center; /* Center-align all content horizontally */
+            font-family: 'Poppins', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #f0fff0;
+            background: linear-gradient(120deg, #3b953e, #55e05c);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Title Styling */
         h1 {
-            margin-top: 20px; /* Add top margin for spacing */
+            margin-top: 20px;
             color: #c6eeca;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
             font-size: 2rem;
@@ -36,37 +37,37 @@
         /* Navigation Bar Styling */
         .navbar {
             width: 100%;
-            margin-top: 10px; /* Add some spacing below the title */
-            background-color: #378d3d; /* Dark green background */
+            margin-top: 10px;
+            background-color: #378d3d;
             display: flex;
-            justify-content: center; /* Center the navigation bar items */
+            justify-content: center;
             align-items: center;
-            padding: 10px 0; /* Vertical padding for navbar */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Add subtle shadow for depth */
+            padding: 10px 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         .navbar a {
-            color: white; /* Set link color to white */
-            text-decoration: none; /* Remove underline from links */
-            padding: 8px 10px; /* Reduced padding for closer spacing */
-            border-radius: 30px; /* Round the corners for buttons */
-            background-color: #378d3d; /* Dark green background for buttons */
-            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
-            margin: 0 5px; /* Reduce space between links */
+            color: white;
+            text-decoration: none;
+            padding: 8px 10px;
+            border-radius: 30px;
+            background-color: #378d3d;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin: 0 5px;
         }
 
         .navbar a:hover {
-            background-color: #3e9b43; /* Change background on hover */
-            transform: translateY(-3px); /* Add lift effect on hover */
+            background-color: #3e9b43;
+            transform: translateY(-3px);
         }
 
         /* Chatbox Styling */
         #chatbox {
-            width: calc(100% - 2in); /* Full width minus 1-inch margin on both sides */
-            height: calc(100vh - 4in); /* Full height minus title, navbar, and additional margin */
+            width: calc(100% - 2in);
+            height: calc(100vh - 4in);
             border: 2px solid #378d3d;
             border-radius: 10px;
-            background-color: #378d3d; /* Match the navbar color */
+            background-color: #378d3d;
             padding: 10px;
             display: flex;
             flex-direction: column;
@@ -74,7 +75,7 @@
             color: #d8f0d8;
             font-size: 1rem;
             margin: 1in;
-            overflow: hidden; /* Prevent content overflow */
+            overflow: hidden;
         }
 
         /* Messages Container */
@@ -132,6 +133,39 @@
             transform: translateY(-3px);
             box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
         }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: none;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #c6eeca;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: typing 1s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -140,81 +174,155 @@
 
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="userHomePage.html">Profile</a>
+        <a href="userHomePage.html">My Dashboard</a>
         <a href="myPlants.html">My Plants</a>
-        <a href="logout.html">Logout</a>
+        <a href="#" id="logout-btn">Logout</a>
     </nav>
 
     <!-- Chat Interface -->
     <div id="chatbox">
         <!-- Messages Section -->
-        <div class="messages" id="messages"></div>
+        <div class="messages" id="messages">
+            <!-- Welcome message will be added here by JavaScript -->
+        </div>
+
+        <!-- Typing Indicator -->
+        <div class="typing-indicator" id="typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
         <!-- Input Section -->
         <div class="input-container">
             <input type="text" id="user-input" placeholder="Your question?" />
-            <button onclick="sendMessage()">Send</button>
+            <button id="send-btn">Send</button>
         </div>
     </div>
 
-    <script>
-        // Function to send a message to the server and display the response
-        async function sendMessage() {
-            const inputField = document.getElementById('user-input');
-            const message = inputField.value;
-            if (!message.trim()) return;  // Ignore empty messages
+    <!-- Import Firebase -->
+    <script type="module">
+        // Import our services
+        import { initializeFirebase } from './services/firebaseConfig.js';
+        import authService from './services/AuthService.js';
+        import plantService from './services/PlantService.js';
+        import aiAssistantService from './services/AIAssistantService.js';
 
-            // Display user's message in the chatbox
-            displayMessage('You', message);
-
-            // Send user message to the server (Node.js backend)
+        // Initialize Firebase when the page loads
+        document.addEventListener('DOMContentLoaded', async () => {
             try {
-                const response = await fetch('http://localhost:3000/ask-assistant', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ message })
+                // Initialize Firebase
+                await initializeFirebase();
+                
+                // Initialize authentication service
+                authService.init();
+                
+                // Add welcome message
+                displayMessage('Assistant', 'Hello! I\'m your Leaf Logic Assistant. I can help you with plant care, gardening advice, and more. How can I assist you today?');
+                
+                // Create a new thread
+                await aiAssistantService.createNewThread();
+                
+                // Set up event listeners
+                setupEventListeners();
+                
+                // Set up logout button
+                document.getElementById('logout-btn').addEventListener('click', async (event) => {
+                    event.preventDefault();
+                    try {
+                        await authService.logout();
+                        window.location.href = 'login.html';
+                    } catch (error) {
+                        console.error('Error logging out:', error);
+                        alert('Failed to log out. Please try again.');
+                    }
                 });
-
-                const data = await response.json();
-                // Display assistant's response in the chatbox
-                displayMessage('Assistant', data.response);
             } catch (error) {
-                console.error('Error:', error);
-                displayMessage('Error', 'Something went wrong. Please try again.');
+                console.error('Error initializing application:', error);
+                displayMessage('System', 'There was an error initializing the application. Please refresh the page and try again.');
             }
+        });
 
-            // Clear the input field
+        // Function to set up event listeners
+        function setupEventListeners() {
+            // Send button click event
+            document.getElementById('send-btn').addEventListener('click', handleSendMessage);
+            
+            // Enter key press event on input field
+            document.getElementById('user-input').addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    handleSendMessage();
+                }
+            });
+        }
+
+        // Function to handle sending messages
+        async function handleSendMessage() {
+            const inputField = document.getElementById('user-input');
+            const message = inputField.value.trim();
+            
+            if (!message) return; // Don't send empty messages
+            
+            // Display user's message
+            displayMessage('You', message);
+            
+            // Clear input field
             inputField.value = '';
-        };
+            
+            // Show typing indicator
+            showTypingIndicator(true);
+            
+            try {
+                // Send message to AI assistant
+                const response = await aiAssistantService.sendMessage(message);
+                
+                // Hide typing indicator
+                showTypingIndicator(false);
+                
+                // Display assistant's response
+                displayMessage('Assistant', response);
+            } catch (error) {
+                // Hide typing indicator
+                showTypingIndicator(false);
+                
+                console.error('Error sending message:', error);
+                displayMessage('System', 'Sorry, there was an error processing your message. Please try again.');
+            }
+        }
 
         // Function to display messages in the chatbox
         function displayMessage(role, message) {
-        message = message
-            .replace(/######\s(.+)/g, '<h6>$1</h6>')
-            .replace(/#####\s(.+)/g, '<h5>$1</h5>')
-            .replace(/####\s(.+)/g, '<h4>$1</h4>')
-            .replace(/###\s(.+)/g, '<h3>$1</h3>')
-            .replace(/##\s(.+)/g, '<h2>$1</h2>')
-            .replace(/#\s(.+)/g, '<h1>$1</h1>')
-            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.+?)\*/g, '<em>$1</em>')
-            .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
-            .replace(/\n/g, '<br>');
-        
-        const messagesContainer = document.getElementById('messages');
-        messagesContainer.innerHTML += `<p><b>${role}:</b> ${message}</p>`;
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;  // Scroll to bottom
-    };
+            // Format markdown-like syntax in the message
+            message = message
+                .replace(/######\s(.+)/g, '<h6>$1</h6>')
+                .replace(/#####\s(.+)/g, '<h5>$1</h5>')
+                .replace(/####\s(.+)/g, '<h4>$1</h4>')
+                .replace(/###\s(.+)/g, '<h3>$1</h3>')
+                .replace(/##\s(.+)/g, '<h2>$1</h2>')
+                .replace(/#\s(.+)/g, '<h1>$1</h1>')
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.+?)\*/g, '<em>$1</em>')
+                .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
+                .replace(/\n/g, '<br>');
+            
+            const messagesContainer = document.getElementById('messages');
+            messagesContainer.innerHTML += `<p><b>${role}:</b> ${message}</p>`;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to bottom
+        }
 
-        // Add event listener for Enter key
-        document.getElementById('user-input').addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // Prevent default form submission behavior
-                sendMessage(); // Call the sendMessage function
+        // Function to show or hide the typing indicator
+        function showTypingIndicator(show) {
+            const typingIndicator = document.getElementById('typing-indicator');
+            typingIndicator.style.display = show ? 'block' : 'none';
+            
+            // Scroll to the typing indicator if showing
+            if (show) {
+                const messagesContainer = document.getElementById('messages');
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }
-        });
+        }
     </script>
 </body>
 </html>
+            
