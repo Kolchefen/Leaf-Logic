@@ -1,75 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Metadata for the webpage -->
-    <meta charset="UTF-8"> <!-- Specifies character encoding for the document -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper rendering on mobile devices -->
-    <title>User Home Page</title> <!-- Title of the webpage shown in the browser tab -->
-
-    <!-- Link to the external CSS file for styling the page -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Leaf Logic</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./styles/userHomePage.css">
 </head>
 <body>
     <!-- Page Header Section -->
     <header>
         <!-- Welcome message -->
-        <h1>Welcome, <span ></span></h1>
-
-        <!-- Navigation bar -->
-        <nav>
-            <ul>
-                <!-- Link to the Settings section -->
-                <li><a href="#settings">Settings</a></li>
-                <!-- Logout link with an ID for potential JavaScript handling -->
-                <li><a id="logout" href="#logout">Logout</a></li>
-            </ul>
-        </nav>
+        <h1>Welcome to Leaf Logic</h1>
+                        <p class="welcome-message">Loading your garden...</p>
     </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="userHomePage.html" class="active">Dashboard</a>
+        <a href="myPlants.html">My Plants</a>
+        <a href="chatbot_draft.html">AI Assistant</a>
+        <a href="#" id="logout-btn">Logout</a>
+    </nav>
 
     <!-- Main Content Section -->
     <main>
-        <!-- Profile Section -->
-        <section id="profile">
-            <h2>Your Profile</h2>
-            <p>Here you can view and edit your profile information.</p>
-
-            <!-- Weather display area -->
-            <div id="weather">
-                <h3>Current Weather</h3>
-                <!-- Placeholder for dynamic weather data -->
-                <p id="weather-info">Loading weather data...</p>
+        <!-- Weather Section -->
+        <section class="card weather-card">
+            <h2>Current Weather</h2>
+            <div id="weather-display">
+                <div class="loading-spinner"></div>
+                <p>Loading weather data...</p>
             </div>
         </section>
 
-        <!-- Include weather-specific JavaScript to fetch and display weather data -->
-        <script src="weather.js"></script>
-
-        <!-- Dashboard Section -->
-        <section id="dashboard">
-            <h2>Dashboard</h2>
-            <p>Access your recent activities and notifications here.</p>
-
-            <!-- Links to other features -->
-            <div class="dashboard-links">
-                <!-- Link to the AI Chat Bot page -->
-                <a href="chatbot_draft.html" class="dashboard-item">AI Chat Bot</a>
+        <!-- Plant Overview Section -->
+        <section class="card plant-overview">
+            <h2>My Garden Overview</h2>
+            <div id="plant-stats">
+                <div class="stat-item">
+                    <span class="stat-icon">🪴</span>
+                    <div class="stat-info">
+                        <h3>Total Plants</h3>
+                        <p id="total-plants">Loading...</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🏠</span>
+                    <div class="stat-info">
+                        <h3>Indoor Plants</h3>
+                        <p id="indoor-plants">Loading...</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🌳</span>
+                    <div class="stat-info">
+                        <h3>Outdoor Plants</h3>
+                        <p id="outdoor-plants">Loading...</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">💧</span>
+                    <div class="stat-info">
+                        <h3>Needs Watering</h3>
+                        <p id="needs-watering">Loading...</p>
+                    </div>
+                </div>
             </div>
+            <a href="myPlants.html" class="action-link">Manage My Plants</a>
+        </section>
 
-            <div class="dashboard-links">
-                <!-- Link to the AI Chat Bot page -->
-                <a href="myPlants.html" class="dashboard-item">Plant Log</a>
+        <!-- Tasks & Reminders Section -->
+        <section class="card tasks-card">
+            <h2>Today's Garden Tasks</h2>
+            <div id="tasks-container">
+                <ul id="tasks-list">
+                    <li class="loading">Loading tasks...</li>
+                </ul>
             </div>
-            
+            <div class="add-task">
+                <input type="text" id="new-task" placeholder="Add a new task...">
+                <button id="add-task-btn">Add</button>
+            </div>
+        </section>
+
+        <!-- Quick Actions Section -->
+        <section class="card quick-actions">
+            <h2>Quick Actions</h2>
+            <div class="actions-grid">
+                <a href="myPlants.html" class="action-btn">
+                    <span class="action-icon">🌱</span>
+                    <span>Add New Plant</span>
+                </a>
+                <a href="chatbot_draft.html" class="action-btn">
+                    <span class="action-icon">🤖</span>
+                    <span>Ask AI Assistant</span>
+                </a>
+                <button id="water-all-btn" class="action-btn">
+                    <span class="action-icon">💧</span>
+                    <span>Water All Plants</span>
+                </button>
+                <button id="record-weather-btn" class="action-btn">
+                    <span class="action-icon">🌤️</span>
+                    <span>Record Weather</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Recent Activity Section -->
+        <section class="card recent-activity">
+            <h2>Recent Activity</h2>
+            <div id="activity-feed">
+                <p class="loading">Loading activity...</p>
+            </div>
         </section>
     </main>
 
     <!-- Footer Section -->
     <footer>
-        <!-- Footer copyright information -->
         <p>&copy; 2024 Leaf Logic. All rights reserved.</p>
     </footer>
 
-    <!-- Include general JavaScript for page interactions -->
-    <script src="./scripts/userHomePage.js"></script>
+    <!-- Import module script -->
+    <script type="module" src="./userHomePage.js"></script>
 </body>
 </html>

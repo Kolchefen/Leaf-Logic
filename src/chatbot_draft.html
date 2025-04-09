@@ -174,8 +174,9 @@
 
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="userHomePage.html">My Dashboard</a>
+        <a href="userHomePage.html" class="active">Dashboard</a>
         <a href="myPlants.html">My Plants</a>
+        <a href="chatbot_draft.html">AI Assistant</a>
         <a href="#" id="logout-btn">Logout</a>
     </nav>
 
@@ -203,10 +204,10 @@
     <!-- Import Firebase -->
     <script type="module">
         // Import our services
-        import { initializeFirebase } from './services/firebaseConfig.js';
-        import authService from './services/AuthService.js';
-        import plantService from './services/PlantService.js';
-        import aiAssistantService from './services/AIAssistantService.js';
+        import { initializeFirebase } from './firebaseConfig.js';
+        import AuthService from './AuthService.js';
+        import PlantService from './PlantService.js';
+        import AiAssistantService from './AIAssistantService.js';
 
         // Initialize Firebase when the page loads
         document.addEventListener('DOMContentLoaded', async () => {
@@ -325,4 +326,3 @@
     </script>
 </body>
 </html>
-            
