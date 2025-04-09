@@ -81,8 +81,8 @@
         /* Messages Container */
         .messages {
             overflow-y: auto;
-            flex: 1; /* Take up remaining vertical space */
-            padding-right: 10px; /* Add padding for a clean scroll bar */
+            flex: 1;
+            padding-right: 10px;
         }
 
         .messages p {
@@ -99,13 +99,13 @@
         .input-container {
             display: flex;
             align-items: center;
-            padding: 10px 0 0 0; /* No visible separation, just top padding */
+            padding: 10px 0 0 0;
         }
 
         #user-input {
-            flex: 1; /* Input takes up remaining space */
+            flex: 1;
             padding: 10px;
-            border: 2px solid #c6eeca; /* Border to complement the dark green chatbox */
+            border: 2px solid #c6eeca;
             border-radius: 25px;
             font-size: 1rem;
             outline: none;
@@ -121,7 +121,7 @@
             border-radius: 25px;
             font-size: 1rem;
             font-weight: bold;
-            background-color: #c6eeca; /* Lighter green for contrast */
+            background-color: #c6eeca;
             color: #333;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
@@ -174,9 +174,8 @@
 
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="userHomePage.html" class="active">Dashboard</a>
+        <a href="userHomePage.html">My Dashboard</a>
         <a href="myPlants.html">My Plants</a>
-        <a href="chatbot_draft.html">AI Assistant</a>
         <a href="#" id="logout-btn">Logout</a>
     </nav>
 
@@ -201,61 +200,56 @@
         </div>
     </div>
 
-    <!-- Import Firebase -->
-    <script type="module">
-        // Import our services
-        import { initializeFirebase } from './firebaseConfig.js';
-        import AuthService from './AuthService.js';
-        import PlantService from './PlantService.js';
-        import AiAssistantService from './AIAssistantService.js';
+    <script>
+        // Store the thread ID for conversation continuity
+        let threadId = null;
+        const serverUrl = 'http://localhost:3000'; // Your server URL
 
-        // Initialize Firebase when the page loads
-        document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                // Initialize Firebase
-                await initializeFirebase();
-                
-                // Initialize authentication service
-                authService.init();
-                
-                // Add welcome message
-                displayMessage('Assistant', 'Hello! I\'m your Leaf Logic Assistant. I can help you with plant care, gardening advice, and more. How can I assist you today?');
-                
-                // Create a new thread
-                await aiAssistantService.createNewThread();
-                
-                // Set up event listeners
-                setupEventListeners();
-                
-                // Set up logout button
-                document.getElementById('logout-btn').addEventListener('click', async (event) => {
-                    event.preventDefault();
-                    try {
-                        await authService.logout();
-                        window.location.href = 'login.html';
-                    } catch (error) {
-                        console.error('Error logging out:', error);
-                        alert('Failed to log out. Please try again.');
-                    }
-                });
-            } catch (error) {
-                console.error('Error initializing application:', error);
-                displayMessage('System', 'There was an error initializing the application. Please refresh the page and try again.');
-            }
-        });
-
-        // Function to set up event listeners
-        function setupEventListeners() {
-            // Send button click event
-            document.getElementById('send-btn').addEventListener('click', handleSendMessage);
+        document.addEventListener('DOMContentLoaded', () => {
+            // Display welcome message
+            displayMessage('Assistant', 'Hello! I\'m your Leaf Logic Assistant. I can help you with plant care, gardening advice, and more. How can I assist you today?');
             
-            // Enter key press event on input field
+            // Set up event listeners
+            document.getElementById('send-btn').addEventListener('click', handleSendMessage);
             document.getElementById('user-input').addEventListener('keydown', (event) => {
                 if (event.key === 'Enter') {
                     event.preventDefault();
                     handleSendMessage();
                 }
             });
+            
+            // Set up logout button
+            document.getElementById('logout-btn').addEventListener('click', (event) => {
+                event.preventDefault();
+                alert('Logging out...');
+                window.location.href = 'login.html';
+            });
+
+            // Create a new thread when the page loads
+            createNewThread();
+        });
+
+        // Function to create a new conversation thread
+        async function createNewThread() {
+            try {
+                const response = await fetch(`${serverUrl}/create-thread`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to create thread: ${response.status}`);
+                }
+
+                const data = await response.json();
+                threadId = data.threadId;
+                console.log('Created new thread:', threadId);
+            } catch (error) {
+                console.error('Error creating thread:', error);
+                displayMessage('System', 'Unable to initialize chat. Please refresh the page and try again.');
+            }
         }
 
         // Function to handle sending messages
@@ -275,36 +269,49 @@
             showTypingIndicator(true);
             
             try {
-                // Send message to AI assistant
-                const response = await aiAssistantService.sendMessage(message);
+                // Call the server API with the message
+                const response = await fetch(`${serverUrl}/ask-assistant`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        threadId: threadId
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error getting response from server');
+                }
+
+                const data = await response.json();
+                
+                // Update thread ID if provided
+                if (data.threadId) {
+                    threadId = data.threadId;
+                }
                 
                 // Hide typing indicator
                 showTypingIndicator(false);
                 
                 // Display assistant's response
-                displayMessage('Assistant', response);
+                displayMessage('Assistant', data.response);
             } catch (error) {
                 // Hide typing indicator
                 showTypingIndicator(false);
                 
-                console.error('Error sending message:', error);
-                displayMessage('System', 'Sorry, there was an error processing your message. Please try again.');
+                console.error('Error:', error);
+                displayMessage('System', 'Sorry, I had trouble connecting to my brain. Please try again later.');
             }
         }
 
         // Function to display messages in the chatbox
         function displayMessage(role, message) {
-            // Format markdown-like syntax in the message
+            // Format markdown-like syntax in the message (simplified)
             message = message
-                .replace(/######\s(.+)/g, '<h6>$1</h6>')
-                .replace(/#####\s(.+)/g, '<h5>$1</h5>')
-                .replace(/####\s(.+)/g, '<h4>$1</h4>')
-                .replace(/###\s(.+)/g, '<h3>$1</h3>')
-                .replace(/##\s(.+)/g, '<h2>$1</h2>')
-                .replace(/#\s(.+)/g, '<h1>$1</h1>')
                 .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\*(.+?)\*/g, '<em>$1</em>')
-                .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
                 .replace(/\n/g, '<br>');
             
             const messagesContainer = document.getElementById('messages');
