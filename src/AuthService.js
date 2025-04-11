@@ -6,8 +6,8 @@ import {
     onAuthStateChanged,
     sendPasswordResetEmail,
     updateProfile
-  } from 'firebase/auth';
-  import { auth } from './firebaseConfig';
+  } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+  import { auth } from './firebaseConfig.js';
   
   class AuthService {
     constructor() {
@@ -20,8 +20,17 @@ import {
   
     /**
      * Initialize the auth service and set up listeners
+     * @param {object} auth - Firebase Auth instance
+     * @returns {void}
      */
-    init() {
+    init(auth) {
+      if (!auth) {
+        console.error('Auth instance is required for initialization');
+        return;
+      }
+
+      this.auth = auth;
+
       this.authStateListener = onAuthStateChanged(this.auth, (user) => {
         this.currentUser = user;
         if (user) {
@@ -78,7 +87,11 @@ import {
      */
     async logout() {
       try {
-        await signOut(this.auth);
+        await signOut(this.auth).then(() => {
+          this.cleanup(); // Clean up the auth state listener
+          this.currentUser = null; // Clear the current user
+          console.log('User signed out successfully');
+        });
       } catch (error) {
         console.error('Error logging out:', error);
         throw error;

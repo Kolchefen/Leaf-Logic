@@ -1,9 +1,9 @@
 /**
  * JavaScript for the user homepage
  */
-import { initializeFirebase } from '../services/firebaseConfig.js';
-import authService from '../services/AuthService.js';
-import plantService from '../services/PlantService.js';
+import { initializeFirebase } from './firebaseConfig.js';
+import authService from './AuthService.js';
+import plantService from './PlantService.js';
 
 // User homepage controller
 class UserHomepageController {

@@ -5,27 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
-
   </head>
 
   <body>
-    <!-- Nav Bar -->
+    <!-- Simplified Nav Bar for Login Page -->
     <div class="navbar">
       <a href="landingPage.html">Home</a>
-      <div class="navbar-links">
-      </div>
     </div>
 
-    <!-- Content Section -->
+    <!-- Form Section -->
     <div class="container">
-      <h1>Leaf Logic</h1>
-      <p>Smart Plant Care Assistant</p>
-
       <form class="form-container" id="login-form">
         <h2>Login</h2>
 
-        <!-- Username Input -->
+        <!-- Email Input -->
         <input type="email" id="login-email" name="email" placeholder="Email" required>
 
         <!-- Password Input -->
@@ -44,17 +39,8 @@
         <p id="error-message" style="color: red; display: none;">Invalid username or password!</p>
       </form>
     </div>
+
+    <!-- Load the login controller as a module -->
+    <script type="module" src="./loginController.js"></script>
   </body>
 </html>
-
-<!--Load Scripts After Content-->
-<link rel="stylesheet" href="./styles/style.css">
-
-<!--Firebase Scripts https://firebase.google.com/docs/web/setup#available-libraries-->
-<!--Initializes firebase authentification Using 8.10.0 for namespaced compatability-->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-
-<script src="./AuthService.js"></script>

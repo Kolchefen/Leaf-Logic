@@ -3,7 +3,6 @@
  */
 import { initializeFirebase } from './firebaseConfig.js';
 import authService from './AuthService.js';
-import plantService from './PlantService.js';
 
 // Global app state
 const appState = {
@@ -30,7 +29,7 @@ async function initializeApp() {
     const { auth } = await initializeFirebase();
     
     // Initialize auth service
-    authService.init();
+    authService.init(auth);
     
     // Set up auth state listener
     auth.onAuthStateChanged(user => {
@@ -139,5 +138,5 @@ async function handleLogout() {
 // Initialize the app when the DOM is loaded
 document.addEventListener('DOMContentLoaded', initializeApp);
 
-// Export functions and state for use in other modules
+// Export functions and state
 export { appState, initializeApp };

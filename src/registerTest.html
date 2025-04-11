@@ -7,14 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/registerStyle.css">
     <link rel="stylesheet" href="./styles/style.css">
-    
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
   </head>
 
   <body>
-    <!-- Simplified Nav Bar for Register Page (removed Login button) -->
+    <!-- Simplified Nav Bar for Register Page -->
     <div class="navbar">
-      <a href="landingpage.html">Home</a>
+      <a href="landingPage.html">Home</a>
     </div>
 
     <!-- Form Section -->
@@ -45,9 +44,7 @@
         </form>
     </div>
 
-</body>
-
-
-<!--Load Scripts After Content-->
-<script src="AuthService.js"></script>
+    <!-- Load the register controller as a module -->
+    <script type="module" src="./registerController.js"></script>
+  </body>
 </html>

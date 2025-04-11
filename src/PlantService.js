@@ -2,11 +2,13 @@ import {
     collection, doc, addDoc, updateDoc, deleteDoc, 
     getDoc, getDocs, query, where, orderBy, 
     serverTimestamp, Timestamp 
-  } from 'firebase/firestore';
-  import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
-  import { db, storage } from './firebaseConfig';
-  import Plant from '../models/Plant';
-  import authService from './AuthService';
+  } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+  import { ref, uploadBytes, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js';
+  import { db, storage } from './firebaseConfig.js';
+  import Plant from './Plants.js';
+  import authService from './AuthService.js';
+
+  
   
   class PlantService {
     constructor() {
@@ -30,7 +32,7 @@ import {
      * Add a new plant to the user's collection
      * @param {Plant} plant - Plant object to add
      * @param {File} photoFile - Optional photo file to upload
-     * @returns {Promise<string>} ID of the created plant document
+     * @returns {Promise<string>} plantId - ID of the created plant document
      */
     async addPlant(plant, photoFile = null) {
       try {
@@ -48,7 +50,7 @@ import {
           updatedAt: serverTimestamp()
         };
   
-        // Add the plant to Firestore
+        // Add the plant to Firestore, Single most important line in here, sets the ref 
         const docRef = await addDoc(this.getPlantsCollection(), plantData);
         console.log('Plant added with ID:', docRef.id);
         return docRef.id;
@@ -130,7 +132,6 @@ import {
             console.log('Plant photo deleted successfully');
           } catch (error) {
             console.warn('Failed to delete plant photo:', error);
-            // Continue with the deletion even if deleting the photo fails
           }
         }
   
@@ -177,6 +178,8 @@ import {
         );
         
         const querySnapshot = await getDocs(plantsQuery);
+        // For each doc map it to a Plant object
+        // and return the array of Plant objects
         return querySnapshot.docs.map(doc => 
           Plant.fromFirestore(doc.id, doc.data())
         );
